@@ -6,7 +6,7 @@ const {
   getWorkshopById,
   getRatings,
   addRating
-} = require('../controllers/workshops.controller')
+} = require('../controllers/workshop.controller')
 
 router.get('/', getAllWorkshops)
 router.get('/:id', getWorkshopById)
