@@ -25,7 +25,7 @@ const app = express()
   .use(cors())
   .use(morgan('dev'))
   .use(express.json())
-  // .use('/api', require('./api/routes'))
+  .use('/api', require('./api/routes'))
 
 // Init server
 app.listen(process.env.PORT || 2222, (err) => {

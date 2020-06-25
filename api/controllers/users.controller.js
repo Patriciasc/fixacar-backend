@@ -8,6 +8,7 @@ module.exports = {
 
 function getUserById (req, res) {
   console.log('User: getUserById')
+  console.log(res.locals.user)
 }
 
 function deleteUserById (req, res) {
