@@ -4,7 +4,7 @@ const {
   getUserbudgets,
   updateUserBudget,
   createBudget
-} = require('../controllers/budget.controller')
+} = require('../controllers/budgets.controller')
 
 router.get('/', getUserbudgets)
 router.put('/:budget_id', updateUserBudget)
