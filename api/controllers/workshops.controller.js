@@ -1,10 +1,11 @@
-// const WorkshopModel = require('../models/workshops.model')
+const WorkshopModel = require('../models/workshops.model')
 
 module.exports = {
   getAllWorkshops,
   getWorkshopById,
   getRatings,
-  addRating
+  addRating,
+  addWorkshop
 }
 
 function getAllWorkshops (req, res) {
@@ -21,4 +22,10 @@ function getRatings (req, res) {
 
 function addRating (req, res) {
   console.log('Workshop: AddRating')
+}
+
+function addWorkshop (req, res) {
+  WorkshopModel
+    .create(req.body)
+    .then(response => res.json(response))
 }
