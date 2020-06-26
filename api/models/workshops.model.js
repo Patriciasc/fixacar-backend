@@ -1,5 +1,31 @@
 const mongoose = require('mongoose')
 
+const serviceSchema = new mongoose.Schema({
+  mechanic: {
+    type: Boolean,
+    required: true
+  },
+  bp: {
+    type: Boolean,
+    required: true
+  },
+  electricity: {
+    type: Boolean,
+    required: true
+  }
+})
+
+const vehicleSchema = new mongoose.Schema({
+  car: {
+    type: Boolean,
+    required: true
+  },
+  moto: {
+    type: Boolean,
+    required: true
+  }
+})
+
 const workshopSchema = new mongoose.Schema({
   ratings: {
     type: [mongoose.Types.ObjectId],
@@ -22,13 +48,11 @@ const workshopSchema = new mongoose.Schema({
     required: [true, 'Telephone is required']
   },
   service: {
-    type: Map,
-    of: Boolean,
+    type: serviceSchema,
     required: [true, 'Service is required']
   },
   vehicle: {
-    type: Map,
-    of: Boolean,
+    type: vehicleSchema,
     required: [true, 'vehicle is required']
   },
   image_url: {
