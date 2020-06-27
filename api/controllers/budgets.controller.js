@@ -1,4 +1,5 @@
-// const budgetModel = require('../models/budgets.model')
+const BudgetModel = require('../models/budgets.model')
+const { handleError } = require('../utils')
 
 module.exports = {
   getUserbudgets,
@@ -7,13 +8,26 @@ module.exports = {
 }
 
 function getUserbudgets (req, res) {
-  console.log('budget: getUserbudgets')
+  BudgetModel.find({ user: res.locals.user._id })
+    .then(budgets => res.json(budgets))
+    .catch(err => handleError(err, res))
 }
 
 function updateUserBudget (req, res) {
-  console.log('budget: updateUserBudget')
+  BudgetModel
+    .findByIdAndUpdate(req.params.budget_id, req.body, {
+      new: true,
+      runValidators: true
+    })
+    .then(response => res.json(response))
+    .catch((err) => handleError(err, res))
 }
 
 function createBudget (req, res) {
-  console.log('budget: createBudget')
+  req.body.user = res.locals.user._id
+  req.body.workshop = req.params.workshop_id
+  BudgetModel
+    .create(req.body)
+    .then(response => res.json(response))
+    .catch(err => handleError(err, res))
 }
