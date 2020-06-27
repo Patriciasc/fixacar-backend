@@ -1,4 +1,6 @@
 const WorkshopModel = require('../models/workshops.model')
+const RatingModel = require('../models/ratings.model')
+const { handleError } = require('../utils')
 
 module.exports = {
   getAllWorkshops,
@@ -10,20 +12,47 @@ module.exports = {
 
 function getAllWorkshops (req, res) {
   WorkshopModel
-    .find(req.query.params)
+    .find(req.query)
     .then(response => res.json(response))
+    .catch((err) => handleError(err, res))
 }
 
 function getWorkshopById (req, res) {
-  console.log('Workshop: getWorkshopById')
+  WorkshopModel
+    .findById(req.params.id, { _id: 0, __v: 0, service: 0, vehicle: 0, createdAt: 0 })
+    .populate('rating')
+    .then(response => res.json(response))
+    .catch((err) => handleError(err, res))
 }
 
 function getRatings (req, res) {
-  console.log('Workshop: getRatings')
+  WorkshopModel
+    .findById(req.params.id, { _id: 0, ratings: 1 })
+    .populate('rating')
+    .then(response => res.json(response))
+    .catch((err) => handleError(err, res))
 }
 
 function addRating (req, res) {
-  console.log('Workshop: AddRating')
+  req.body.user = res.locals.user._id
+  RatingModel
+    .create(req.body)
+    .then(rating => {
+      WorkshopModel
+        .findById(req.params.id)
+        .populate('rating')
+        .then(ws => {
+          ws.ratings.push(rating._id)
+          ws
+            .save()
+            .then(wsCreated => {
+              res.json(wsCreated)
+            })
+            .catch(err => handleError(err, res))
+        })
+        .catch((err) => handleError(err, res))
+    })
+    .catch((err) => handleError(err, res))
 }
 
 function addWorkshop (req, res) {
