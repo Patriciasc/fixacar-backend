@@ -9,7 +9,9 @@ module.exports = {
 }
 
 function getAllWorkshops (req, res) {
-  console.log('Workshop: getAllWorkshops')
+  WorkshopModel
+    .find(req.query.params)
+    .then(response => res.json(response))
 }
 
 function getWorkshopById (req, res) {
