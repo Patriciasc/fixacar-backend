@@ -3,26 +3,31 @@ const mongoose = require('mongoose')
 const serviceSchema = new mongoose.Schema({
   mechanic: {
     type: Boolean,
-    required: true
+    required: true,
+    default: true
   },
   bp: {
     type: Boolean,
-    required: true
+    required: true,
+    default: false
   },
   electricity: {
     type: Boolean,
-    required: true
+    required: true,
+    default: false
   }
 })
 
 const vehicleSchema = new mongoose.Schema({
   car: {
     type: Boolean,
-    required: true
+    required: true,
+    default: true
   },
   moto: {
     type: Boolean,
-    required: true
+    required: true,
+    default: false
   }
 })
 
