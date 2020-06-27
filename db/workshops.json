@@ -1,0 +1,150 @@
+{
+  "_id": {
+    "$oid": "5ef6486644bf450e80a9bb1c"
+  },
+  "ratings": [],
+  "createdAt": {
+    "$date": "2020-06-26T19:10:46.872Z"
+  },
+  "name": "Taller Pepe",
+  "address": "Calle Falsa 123",
+  "schedule": "L-V: 8 a 16",
+  "telephone": "928123456",
+  "service": {
+    "_id": {
+      "$oid": "5ef6486644bf450e80a9bb1d"
+    },
+    "mechanic": true,
+    "bp": true,
+    "electricity": false
+  },
+  "vehicle": {
+    "_id": {
+      "$oid": "5ef6486644bf450e80a9bb1e"
+    },
+    "car": true,
+    "moto": false
+  },
+  "image_url": "aaaa",
+  "__v": 0
+}
+{
+  "_id": {
+    "$oid": "5ef648e821c0b70eeafa6fdb"
+  },
+  "ratings": [],
+  "createdAt": {
+    "$date": "2020-06-26T19:11:44.693Z"
+  },
+  "name": "Taller Domi",
+  "address": "Calle Falsa 123",
+  "schedule": "L-V: 8 a 17",
+  "telephone": "928123789",
+  "service": {
+    "_id": {
+      "$oid": "5ef648e821c0b70eeafa6fdc"
+    },
+    "mechanic": true,
+    "bp": true,
+    "electricity": true
+  },
+  "vehicle": {
+    "_id": {
+      "$oid": "5ef648e821c0b70eeafa6fdd"
+    },
+    "car": true,
+    "moto": false
+  },
+  "image_url": "aaaa",
+  "__v": 0
+}
+{
+  "_id": {
+    "$oid": "5ef649ef281b0a10832141a5"
+  },
+  "ratings": [],
+  "createdAt": {
+    "$date": "2020-06-26T19:15:37.293Z"
+  },
+  "name": "Taller TuMoto.com",
+  "address": "Calle Feria 32",
+  "schedule": "L-V: 8 a 17",
+  "telephone": "928123789",
+  "service": {
+    "_id": {
+      "$oid": "5ef649ef281b0a10832141a6"
+    },
+    "mechanic": true,
+    "bp": false,
+    "electricity": true
+  },
+  "vehicle": {
+    "_id": {
+      "$oid": "5ef649ef281b0a10832141a7"
+    },
+    "car": false,
+    "moto": true
+  },
+  "image_url": "aaaa",
+  "__v": 0
+}
+{
+  "_id": {
+    "$oid": "5ef64a00281b0a10832141a8"
+  },
+  "ratings": [],
+  "createdAt": {
+    "$date": "2020-06-26T19:15:37.293Z"
+  },
+  "name": "Taller TuMoto2.com",
+  "address": "Calle Feria 32",
+  "schedule": "L-V: 8 a 17",
+  "telephone": "928123789",
+  "service": {
+    "_id": {
+      "$oid": "5ef64a00281b0a10832141a9"
+    },
+    "mechanic": true,
+    "bp": false,
+    "electricity": true
+  },
+  "vehicle": {
+    "_id": {
+      "$oid": "5ef64a00281b0a10832141aa"
+    },
+    "car": false,
+    "moto": true
+  },
+  "image_url": "aaaa",
+  "__v": 0
+}
+{
+  "_id": {
+    "$oid": "5ef64a1d281b0a10832141ab"
+  },
+  "ratings": [],
+  "createdAt": {
+    "$date": "2020-06-26T19:15:37.293Z"
+  },
+  "name": "Taller MotoMax",
+  "address": "Calle Feria 32",
+  "schedule": "L-V: 8 a 17",
+  "telephone": "928123789",
+  "service": {
+    "_id": {
+      "$oid": "5ef64a1d281b0a10832141ac"
+    },
+    "mechanic": true,
+    "bp": true,
+    "electricity": true
+  },
+  "vehicle": {
+    "_id": {
+      "$oid": "5ef64a1d281b0a10832141ad"
+    },
+    "car": false,
+    "moto": true
+  },
+  "image_url": "aaaa",
+  "__v": 0
+}
