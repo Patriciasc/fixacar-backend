@@ -11,8 +11,13 @@ module.exports = {
 }
 
 function getAllWorkshops (req, res) {
+  var query = {}
+  if (req.query.car) { query.vehicle_car = true }
+  if (req.query.moto) { query.vehicle_moto = true }
+  if (req.query.service) { query[`service_${req.query.service}`] = true }
+  console.log(query)
   WorkshopModel
-    .find(req.query)
+    .find(query)
     .then(response => res.json(response))
     .catch((err) => handleError(err, res))
 }
@@ -20,7 +25,7 @@ function getAllWorkshops (req, res) {
 function getWorkshopById (req, res) {
   WorkshopModel
     .findById(req.params.id, { _id: 0, __v: 0, service: 0, vehicle: 0, createdAt: 0 })
-    .populate('rating')
+    .populate('ratings')
     .then(response => res.json(response))
     .catch((err) => handleError(err, res))
 }
@@ -28,7 +33,7 @@ function getWorkshopById (req, res) {
 function getRatings (req, res) {
   WorkshopModel
     .findById(req.params.id, { _id: 0, ratings: 1 })
-    .populate('rating')
+    .populate('ratings')
     .then(response => res.json(response))
     .catch((err) => handleError(err, res))
 }
@@ -40,7 +45,7 @@ function addRating (req, res) {
     .then(rating => {
       WorkshopModel
         .findById(req.params.id)
-        .populate('rating')
+        .populate('ratings')
         .then(ws => {
           ws.ratings.push(rating._id)
           ws

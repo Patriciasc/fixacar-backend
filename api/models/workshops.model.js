@@ -1,41 +1,18 @@
 const mongoose = require('mongoose')
 
 const serviceSchema = new mongoose.Schema({
-  mechanic: {
-    type: Boolean,
-    required: true,
-    default: true
-  },
-  bp: {
-    type: Boolean,
-    required: true,
-    default: false
-  },
-  electricity: {
-    type: Boolean,
-    required: true,
-    default: false
-  }
+
 })
 
 const vehicleSchema = new mongoose.Schema({
-  car: {
-    type: Boolean,
-    required: true,
-    default: true
-  },
-  moto: {
-    type: Boolean,
-    required: true,
-    default: false
-  }
+
 })
 
 const workshopSchema = new mongoose.Schema({
-  ratings: {
-    type: [mongoose.Types.ObjectId],
-    required: false
-  },
+  ratings: [{
+    type: mongoose.Types.ObjectId,
+    ref: 'rating'
+  }],
   name: {
     type: String,
     required: [true, 'Name is required']
@@ -51,14 +28,6 @@ const workshopSchema = new mongoose.Schema({
   telephone: {
     type: String,
     required: [true, 'Telephone is required']
-  },
-  service: {
-    type: serviceSchema,
-    required: [true, 'Service is required']
-  },
-  vehicle: {
-    type: vehicleSchema,
-    required: [true, 'vehicle is required']
   },
   image_url: {
     type: String,
@@ -76,6 +45,26 @@ const workshopSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now()
+  },
+  vehicle_car: {
+    type: Boolean,
+    default: true
+  },
+  vehicle_moto: {
+    type: Boolean,
+    default: false
+  },
+  service_mechanic: {
+    type: Boolean,
+    default: true
+  },
+  service_bp: {
+    type: Boolean,
+    default: false
+  },
+  service_electricity: {
+    type: Boolean,
+    default: false
   }
 })
 

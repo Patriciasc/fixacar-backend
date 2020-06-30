@@ -14,6 +14,7 @@ function getUserbudgets (req, res) {
 }
 
 function updateUserBudget (req, res) {
+  console.log(req.params)
   BudgetModel
     .findByIdAndUpdate(req.params.budget_id, req.body, {
       new: true,
