@@ -12,9 +12,12 @@
     "mongoose": "^5.9.20",
     "morgan": "^1.10.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mongoose-seed": "^0.6.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js",
+    "seed": "node seed.js"
   },
   "repository": {
     "type": "git",
