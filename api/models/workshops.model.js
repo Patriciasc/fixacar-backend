@@ -1,13 +1,5 @@
 const mongoose = require('mongoose')
 
-const serviceSchema = new mongoose.Schema({
-
-})
-
-const vehicleSchema = new mongoose.Schema({
-
-})
-
 const workshopSchema = new mongoose.Schema({
   ratings: [{
     type: mongoose.Types.ObjectId,

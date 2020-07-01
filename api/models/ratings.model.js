@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const ratingSchema = new mongoose.Schema({
   user: {
     type: mongoose.Types.ObjectId,
+    ref: 'user',
     required: [true, 'User is required']
   },
   pt_general: {

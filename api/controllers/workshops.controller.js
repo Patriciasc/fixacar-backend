@@ -1,4 +1,5 @@
 const WorkshopModel = require('../models/workshops.model')
+const UserModel = require('../models/users.model')
 const RatingModel = require('../models/ratings.model')
 const { handleError } = require('../utils')
 
@@ -26,7 +27,15 @@ function getWorkshopById (req, res) {
   WorkshopModel
     .findById(req.params.id, { _id: 0, __v: 0, service: 0, vehicle: 0, createdAt: 0 })
     .populate('ratings')
-    .then(response => res.json(response))
+    .then(response => {
+      UserModel.populate(response.ratings, {
+        path: 'user',
+        select: 'name email'
+      }, (err, response) => {
+        if (err) { handleError(err, res) }
+        res.json(response)
+      })
+    })
     .catch((err) => handleError(err, res))
 }
 

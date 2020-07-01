@@ -3,10 +3,12 @@ const mongoose = require('mongoose')
 const budgetSchema = new mongoose.Schema({
   user: {
     type: mongoose.Types.ObjectId,
+    ref: 'user',
     required: [true, 'User is required']
   },
   workshop: {
     type: mongoose.Types.ObjectId,
+    ref: 'workshop',
     required: [true, 'User is required']
   },
   link: {
