@@ -39,7 +39,23 @@ var data = [
         vehicle_moto: false,
         service_mechanic: true,
         service_bp: true,
-        service_electricity: true
+        service_electricity: true,
+        pt_general: 5,
+        pt_price: 1
+      },
+      {
+        name: 'Taller Tana Super Rating',
+        address: 'Calle Mesa y Lopez,',
+        schedule: '24/7',
+        telephone: '123 123 123',
+        image_url: 'https://fotos02.laprovincia.es/2020/01/27/1024x341/tanausu-pino.jpg',
+        vehicle_car: true,
+        vehicle_moto: false,
+        service_mechanic: true,
+        service_bp: true,
+        service_electricity: true,
+        pt_general: 1,
+        pt_price: 5
       }
     ]
   },
