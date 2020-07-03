@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "12.16.x"
+  },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
