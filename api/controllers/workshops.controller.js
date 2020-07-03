@@ -53,6 +53,9 @@ function getRatings (req, res) {
 
 function addRating (req, res) {
   req.body.user = res.locals.user._id
+  const lastSurveyGeneral = req.body.pt_general
+  const lastSurveyQuality = req.body.pt_quality
+  const lastSurveyPrice = req.body.pt_price
   RatingModel
     .create(req.body)
     .then(rating => {
@@ -61,6 +64,22 @@ function addRating (req, res) {
         .populate('ratings')
         .then(ws => {
           ws.ratings.push(rating._id)
+          let generalP = 0
+          let priceP = 0
+          let qualityP = 0
+          let quantity = 1
+          for (let i = 0; i < ws.ratings.length - 2; i++) {
+            generalP += ws.ratings[i].pt_general
+            priceP += ws.ratings[i].pt_price
+            qualityP += ws.ratings[i].pt_quality
+            quantity++
+          }
+          generalP = generalP + parseInt(lastSurveyGeneral)
+          priceP = priceP + parseInt(lastSurveyPrice)
+          qualityP = qualityP + parseInt(lastSurveyQuality)
+          ws.pt_general = Math.round(generalP / quantity)
+          ws.pt_price = Math.round(priceP / quantity)
+          ws.pt_quality = Math.round(qualityP / quantity)
           ws
             .save()
             .then(wsCreated => {
