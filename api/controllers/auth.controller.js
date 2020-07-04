@@ -10,7 +10,7 @@ function signup (req, res) {
     password: hashedPassword
   }).then(user => {
     const userData = { name: user.name, email: user.email }
-    const token = jwt.sign(userData, process.env.SECRET, { expiresIn: '60m' })
+    const token = jwt.sign(userData, process.env.SECRET, { expiresIn: '180m' })
     res.json({ token, ...userData })
   }).catch(error => res.status(403).json({ error: error.errmsg }))
 }
@@ -22,7 +22,7 @@ function login (req, res) {
       if (!user) { res.json({ error: 'tu email no sirve aqui, rufián!' }) } else {
         if (bcrypt.compareSync(req.body.password, user.password)) {
           const userData = { name: user.name, email: user.email }
-          const token = jwt.sign(userData, process.env.SECRET, { expiresIn: '60m' })
+          const token = jwt.sign(userData, process.env.SECRET, { expiresIn: '180m' })
           res.json({ token, ...userData })
         } else {
           res.json({ error: 'tu password no sirve aqui, bocaChancla!' })
