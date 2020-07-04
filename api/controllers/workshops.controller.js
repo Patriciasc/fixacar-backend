@@ -13,7 +13,7 @@ module.exports = {
 
 function getAllWorkshops (req, res) {
   var query = {}
-  let orderDir = -1
+  var orderDir = -1
 
   if (req.query.car) { query.vehicle_car = true }
   if (req.query.moto) { query.vehicle_moto = true }
