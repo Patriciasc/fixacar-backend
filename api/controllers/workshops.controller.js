@@ -13,14 +13,17 @@ module.exports = {
 
 function getAllWorkshops (req, res) {
   var query = {}
+  let orderDir = -1
+
   if (req.query.car) { query.vehicle_car = true }
   if (req.query.moto) { query.vehicle_moto = true }
   if (req.query.service) { query[`service_${req.query.service}`] = true }
+  if (req.query.order === 'pt_price') { orderDir = 1 }
 
   WorkshopModel
     .find(query)
     .sort({
-      [req.query.order]: -1
+      [req.query.order]: orderDir
     })
     .then(response => res.json(response))
     .catch((err) => handleError(err, res))
