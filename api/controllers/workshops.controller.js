@@ -56,9 +56,7 @@ function getRatings (req, res) {
 
 function addRating (req, res) {
   req.body.user = res.locals.user._id
-  const lastSurveyGeneral = req.body.pt_general
-  const lastSurveyQuality = req.body.pt_quality
-  const lastSurveyPrice = req.body.pt_price
+
   RatingModel
     .create(req.body)
     .then(rating => {
@@ -66,27 +64,16 @@ function addRating (req, res) {
         .findById(req.params.id)
         .populate('ratings')
         .then(ws => {
-          ws.ratings.push(rating._id)
-          let generalP = 0
-          let priceP = 0
-          let qualityP = 0
-          let quantity = 1
-          for (let i = 0; i < ws.ratings.length - 2; i++) {
-            generalP += ws.ratings[i].pt_general
-            priceP += ws.ratings[i].pt_price
-            qualityP += ws.ratings[i].pt_quality
-            quantity++
-          }
-          generalP = generalP + parseInt(lastSurveyGeneral)
-          priceP = priceP + parseInt(lastSurveyPrice)
-          qualityP = qualityP + parseInt(lastSurveyQuality)
-          ws.pt_general = Math.round(generalP / quantity)
-          ws.pt_price = Math.round(priceP / quantity)
-          ws.pt_quality = Math.round(qualityP / quantity)
-          ws
-            .save()
+          ws.ratings.push(rating)
+
+          ws.save()
             .then(wsCreated => {
-              res.json(wsCreated)
+              wsCreated.pt_general = wsCreated.ratings.reduce((acc, rating) => acc + rating.pt_general, 0) / wsCreated.ratings.length
+              wsCreated.pt_quality = wsCreated.ratings.reduce((acc, rating) => acc + rating.pt_quality, 0) / wsCreated.ratings.length
+              wsCreated.pt_price = wsCreated.ratings.reduce((acc, rating) => acc + rating.pt_price, 0) / wsCreated.ratings.length
+              wsCreated.save().then(response => {
+                res.json(response)
+              })
             })
             .catch(err => handleError(err, res))
         })
